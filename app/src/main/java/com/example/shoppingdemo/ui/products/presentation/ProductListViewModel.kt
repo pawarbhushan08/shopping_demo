@@ -12,7 +12,6 @@ import com.example.shoppingdemo.ui.base.Success
 class ProductListViewModel(private val getProducts: GetProductsUseCase) :
     BaseViewModel<List<ProductInfo>>() {
 
-    val photosAdapter = ProductAdapter()
 
     fun getProductsList() = executeUseCase {
         getProducts()

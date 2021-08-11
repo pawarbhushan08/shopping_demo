@@ -1,11 +1,10 @@
 package com.example.data.database.dao
 
 import androidx.room.*
-import com.example.data.database.WEATHER_TABLE_NAME
+import com.example.data.database.PRODUCT_LIST_TABLE_NAME
+import com.example.data.database.PRODUCT_TABLE_NAME
+import com.example.data.database.model.DbProduct
 import com.example.data.database.model.ProductEntity
-import com.example.data.networking.model.Product
-import com.example.data.networking.model.ProductInfoResponse
-import com.example.domain.model.ProductInfo
 
 @Dao
 interface ProductDao {
@@ -16,12 +15,12 @@ interface ProductDao {
         return getProducts()
     }
 
-    @Query("SELECT * FROM $WEATHER_TABLE_NAME")
+    @Query("SELECT * FROM $PRODUCT_LIST_TABLE_NAME")
     suspend fun getProducts(): ProductEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveProducts(product: ProductEntity)
 
-    @Query("SELECT * FROM $WEATHER_TABLE_NAME WHERE id = :id")
-    fun getProductDetails(id: String) : ProductInfo
+    @Query("SELECT * FROM $PRODUCT_TABLE_NAME WHERE id = :id")
+    suspend fun getProductDetails(id: Long): DbProduct
 }

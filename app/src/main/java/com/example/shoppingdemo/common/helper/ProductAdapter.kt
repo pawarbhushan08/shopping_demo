@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.ProductInfo
 import com.example.shoppingdemo.R
+import com.example.shoppingdemo.common.adapter.ProductListAction
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_product.view.*
 
 const val IMAGE_SIDE_PX = 400
 
-class ProductAdapter(val products: ArrayList<ProductInfo> = arrayListOf()) : RecyclerView.Adapter<ProductAdapter.ProductsViewHolder>() {
+class ProductAdapter(val products: ArrayList<ProductInfo> = arrayListOf(), val actions: ProductListAction) : RecyclerView.Adapter<ProductAdapter.ProductsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
         return ProductsViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -29,6 +30,7 @@ class ProductAdapter(val products: ArrayList<ProductInfo> = arrayListOf()) : Rec
     }
 
     inner class ProductsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val layout = itemView.postLayout
         private val productTitle = itemView.fragranceName
         private val productQuantity = itemView.userRating
         private val productPrice = itemView.price
@@ -41,6 +43,8 @@ class ProductAdapter(val products: ArrayList<ProductInfo> = arrayListOf()) : Rec
                 .resize(IMAGE_SIDE_PX, IMAGE_SIDE_PX)
                 .centerCrop()
                 .into(itemView.imageView)
+            layout.setOnClickListener { actions.onClick(productInfo.productId) }
+
         }
     }
 }

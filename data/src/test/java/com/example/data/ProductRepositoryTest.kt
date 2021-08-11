@@ -3,7 +3,7 @@ package com.example.data
 import com.example.data.common.utils.Connectivity
 import com.example.data.database.dao.ProductDao
 import com.example.data.networking.ProductsApi
-import com.example.data.repository.weather.ProductRepositoryImpl
+import com.example.data.repository.product.ProductRepositoryImpl
 import com.example.data.utils.*
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.runBlocking

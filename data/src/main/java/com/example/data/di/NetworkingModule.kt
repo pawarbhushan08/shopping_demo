@@ -20,7 +20,7 @@ val networkingModule = module {
     single<Interceptor> { MockInterceptor() }
     single {
         OkHttpClient.Builder().apply {
-            if (BuildConfig.DEBUG) addInterceptor(get())
+            if (BuildConfig.DEBUG) addInterceptor(get())//
                 .callTimeout(10, TimeUnit.SECONDS)
         }.build()
     }

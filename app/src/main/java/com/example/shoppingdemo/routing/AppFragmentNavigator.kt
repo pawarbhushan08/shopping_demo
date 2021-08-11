@@ -11,7 +11,7 @@ import com.example.shoppingdemo.ui.products.view.fragments.ProductDetailsFragmen
 
 class AppFragmentNavigator(private val activity: FragmentActivity) : FragmentNavigator {
 
-    override fun showProductDetails() =
-        activity.showFragment(ProductDetailsFragment.newInstance(), R.id.fragmentContainer, true)
+    override fun showProductDetails(id:Long) =
+        activity.showFragment(ProductDetailsFragment.newInstance(id), R.id.fragmentContainer, true)
 }
 

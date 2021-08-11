@@ -1,4 +1,4 @@
-package com.example.data.repository.weather
+package com.example.data.repository.product
 
 import com.example.data.database.dao.ProductDao
 import com.example.data.database.model.ProductEntity
@@ -22,9 +22,5 @@ class ProductRepositoryImpl(
             },
             dbDataProvider = { productDao.getProducts() }
         )
-    }
-
-    override suspend fun getProductDetails(): Result<ProductInfo> {
-        return fetchData({ productDao.getProductDetails(id)})
     }
 }

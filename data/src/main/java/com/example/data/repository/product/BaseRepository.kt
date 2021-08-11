@@ -1,8 +1,7 @@
-package com.example.data.repository.weather
+package com.example.data.repository.product
 
 import com.example.data.common.coroutine.CoroutineContextProvider
 import com.example.data.common.utils.Connectivity
-import com.example.data.database.DB_ENTRY_ERROR
 import com.example.data.networking.GENERAL_NETWORK_ERROR
 import com.example.data.networking.base.DomainMapper
 import com.example.domain.model.Failure
@@ -35,6 +34,19 @@ abstract class BaseRepository<T : Any, R : DomainMapper<T>> : KoinComponent {
       }
     }
   }
+
+  /**
+   * Use this if you need to cache data after fetching it from the db only
+   */
+  protected suspend fun fetchData(
+    dbDataProvider: suspend () -> R
+  ): Result<T> {
+    return withContext(contextProvider.io) {
+        val dbResult = dbDataProvider()
+        Success(dbResult.mapToDomainModel())
+      }
+    }
+
   
   /**
    * Use this when communicating only with the api service

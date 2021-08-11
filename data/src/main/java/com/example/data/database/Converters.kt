@@ -1,7 +1,7 @@
 package com.example.data.database
 
 import androidx.room.TypeConverter
-import com.example.data.networking.model.Product
+import com.example.data.database.model.DbProduct
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -11,13 +11,13 @@ class Converters {
     // Weather list converters
 
     @TypeConverter
-    fun fromWeatherListToJson(list: List<Product>?): String {
+    fun fromProductListToJson(list: List<DbProduct>?): String {
         return list?.let { gson.toJson(it) } ?: ""
     }
 
     @TypeConverter
-    fun fromJsonToWeatherList(jsonList: String): List<Product> {
-        val listType = object : TypeToken<List<Product>>() {}.type
+    fun fromJsonToProductList(jsonList: String): List<DbProduct> {
+        val listType = object : TypeToken<List<DbProduct>>() {}.type
         return gson.fromJson(jsonList, listType)
     }
 }

@@ -1,9 +1,12 @@
 package com.example.domain.model
 
 data class ProductInfo(
-    val productName: String,
-    val productDescription: String,
-    val productImageUrl: String,
-    val productPrice: String,
-    val userRating: Int
+    var productId: Long,
+    var productName: String,
+    var productDescription: String,
+    var productImageUrl: String,
+    var productPrice: String,
+    var userRating: Int,
+    var addedToCart: Boolean,
+    var addedToWishList: Boolean
 )
